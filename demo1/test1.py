@@ -25,24 +25,24 @@ def test3():
     return render_template("test3.html")
 
 
-@app.route("/do/ref")
-def test4():
-    # 1、接收用户信息
-    username = request.args.get("user")
-    password = request.args.get("pwd")
-    role = request.args.get("role")
-    gender = request.args.get("gender")
-    hobby_list =request.args.getlist("hobby")
-    print(username, password, role, gender, hobby_list)
-
-    # 2、将注册信息，放置数据库（后续）
-    # 将注册信息，放置本地文件中
-    with open('account.txt', mode='a', encoding='utf-8') as f:
-        line = "{}|{}|{}|{}|{}\n".format(username, password, role, gender, hobby_list)
-        f.write(line)
-
-    # 3、返回信息
-    return "success"
+# @app.route("/do/ref")
+# def test4():
+#     # 1、接收用户信息
+#     username = request.args.get("user")
+#     password = request.args.get("pwd")
+#     role = request.args.get("role")
+#     gender = request.args.get("gender")
+#     hobby_list =request.args.getlist("hobby")
+#     print(username, password, role, gender, hobby_list)
+#
+#     # 2、将注册信息，放置数据库（后续）
+#     # 将注册信息，放置本地文件中
+#     with open('account.txt', mode='a', encoding='utf-8') as f:
+#         line = "{}|{}|{}|{}|{}\n".format(username, password, role, gender, hobby_list)
+#         f.write(line)
+#
+#     # 3、返回信息
+#     return "success"
 
 
 @app.route("/do/ref", methods=['POST'])
