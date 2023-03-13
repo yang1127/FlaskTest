@@ -1,5 +1,5 @@
 # -*-coding:utf-8-*-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from datetime import datetime
 
 app = Flask(__name__)
@@ -19,7 +19,7 @@ def test2():
     return render_template("test2.html")
 
 
-# 测试注册、登录
+# 注册
 @app.route("/test3")
 def test3():
     return render_template("test3.html")
@@ -45,6 +45,7 @@ def test3():
 #     return "success"
 
 
+# 获取注册信息，注册成功
 @app.route("/do/ref", methods=['POST'])
 def test4():
     # 获取文件
@@ -65,10 +66,29 @@ def test4():
         line = "{}|{}|{}|{}|{}\n".format(username, password, role, gender, hobby_list)
         f.write(line)
 
-    # 3、返回信息
-    return "success"
+    # 3、返回信息，跳转到登录页面
+    # return "success"
+    return redirect("/login")
+
+
+# 登录
+@app.route("/login")
+def test5():
+    return render_template("test4.html")
+
+
+# 获取登录信息，登录成功
+@app.route("/do/login", methods=['POST'])
+def test6():
+    # 获取用户信息
+    username = request.form.get("user")
+    password = request.form.get("pwd")
+
+    if username == "root" and password == "123":
+        return "登录成功"
+    else:
+        return "登录失败"
 
 
 if __name__ == '__main__':
     app.run()
-    print('yzq1')
