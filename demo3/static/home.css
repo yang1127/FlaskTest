@@ -1,6 +1,8 @@
-div{
-    color: red;
+.id1{
+    background-color: red;
+    color: green !important;
+    height: 100px;
 }
-.id{
+.id2{
     color: blue;
 }
